@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React, { useRef, useEffect } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -22,34 +22,21 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import './ProjectRounter.css'
+import './Resume.css'
 import Avatar from '@mui/material/Avatar';
-import proPic from '../assets/images/saikumar.jpg'
+import proPic from '../../assets/images/saikumar.jpg'
+import { Route, Routes } from 'react-router';
+// import AboutMe from './Resume/AboutMe';
+import { Link } from "react-router-dom";
+import { resumeRoutData } from './RouterData';
+
 
 const drawerWidth = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  }),
-);
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
+    const AppBar = styled(MuiAppBar, {
+        shouldForwardProp: (prop) => prop !== 'open',
+    })(({ theme, open }) => ({
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -74,16 +61,66 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function PersistentDrawerLeft() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+
+export default function PersistentDrawerLeft({
+  ontoggle
+}) {
+
+    const ref =useRef(null);
+    
+    const theme = useTheme();
+    const [open, setOpen] = React.useState(false);
+
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+                if (open) {
+                    setOpen(false)
+                    ontoggle(10)
+                }
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref, open]);
+    
+
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+                if (open) {
+                    setOpen(false)
+                }
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref, open]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
+    ontoggle(240)
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
+    ontoggle(10)
   };
 
   const renderImage = name =>{
@@ -98,20 +135,22 @@ export default function PersistentDrawerLeft() {
   }
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box ref={ref} sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar sx= {{backgroundColor:"#ADD8E6"}} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2,
+                backgroundColor:"#ADD8E6",
+                ...(open && { display: 'none' }) }}
           >
-            <MenuIcon />
+            <MenuIcon style={{color:"black"}} />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" style={{color:'black'}} >
             Sai Kumar Gurugubebelli
           </Typography>
         </Toolbar>
@@ -123,6 +162,7 @@ export default function PersistentDrawerLeft() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            backgroundColor:"#ADD8E6"
           },
         }}
         variant="persistent"
@@ -131,16 +171,6 @@ export default function PersistentDrawerLeft() {
       >
         <DrawerHeader>
             <div className="propic">
-                {/* <Box 
-                 component="img"
-                 borderRadius={30}
-                 sx={{
-                   height: 153,
-                   width: 150,
-                   }}
-                   src='../assets/images/saikumar.jpg'
-
-                 ></Box> */}
                  <Avatar
                  sx={{
                     height: 153,
@@ -157,12 +187,20 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['About Me', 'Educational', 'Tools Worked', 'Work History','Certificates'].map((text, index) => (
-            <ListItem button key={text}>
+          {resumeRoutData.map((text, index) => (
+            <ListItem button key={text.title}>
+              <Link
+            style={{ textDecoration: 'none', color: 'black', display: 'flex', justifyContent:"center" }}
+            to={`/resume/${text.route}`}
+            key={text.title}
+            >
               <ListItemIcon>
-                {renderImage(text)}
+                {renderImage(text.title)}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text.title} 
+                // onClick={text=>handleDisplayContent(text)}
+              />
+              </Link>
             </ListItem>
           ))}
         </List>
@@ -178,9 +216,6 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-      </Main>
     </Box>
   );
 }

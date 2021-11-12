@@ -1,0 +1,16 @@
+.main{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -9;
+}
+.collection{
+    margin-top: 8%;
+    margin-left: 15%;
+
+}
+.propic{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
