@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import Resume from './Resume/Resume'
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import {
-    BrowserRouter,
     Routes,
     Route
   } from "react-router-dom";
 import AboutMe from './Resume/AboutMe';
 import Education from './Resume/Education';
+import Tools from './Resume/Tools';
+import Skills from './Resume/Skills';
   
 function MainRouter() {
     const [contentWidth, setContentWidth] = useState(0)
@@ -40,11 +41,10 @@ function MainRouter() {
             <Resume ontoggle={ontoggle} />
             <Main>
             <Routes>
-                {/* <Route path="/resume" element={<Resume />} /> */}
-                {/* <Routes> */}
-        <Route path="/resume/aboutme" element={<AboutMe />} />
-        <Route path="/resume/edu" element={<Education />} />
-      {/* </Routes> */}
+                <Route path="/resume/aboutme" element={<AboutMe />} />
+                <Route path="/resume/edu" element={<Education />} />
+                <Route path="/resume/tools" element={<Tools />} />
+                <Route path="/resume/skils" element={<Skills />} />
             </Routes>
             </Main>
         </div>

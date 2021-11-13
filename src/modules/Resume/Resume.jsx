@@ -13,6 +13,7 @@ import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import WorkRoundedIcon from '@mui/icons-material/WorkRounded';
 import IconButton from '@mui/material/IconButton';
+import CodeIcon from '@mui/icons-material/Code';
 import Divider from '@mui/material/Divider';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -25,7 +26,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import './Resume.css'
 import Avatar from '@mui/material/Avatar';
 import proPic from '../../assets/images/saikumar.jpg'
-import { Route, Routes } from 'react-router';
 // import AboutMe from './Resume/AboutMe';
 import { Link } from "react-router-dom";
 import { resumeRoutData } from './RouterData';
@@ -90,7 +90,7 @@ export default function PersistentDrawerLeft({
             // Unbind the event listener on clean up
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [ref, open]);
+    }, [ref, open, ontoggle]);
     
 
     useEffect(() => {
@@ -129,7 +129,9 @@ export default function PersistentDrawerLeft({
         'Educational': <SchoolRoundedIcon />,
         'Tools Worked': <GitHubIcon />,
          'Work History': <WorkRoundedIcon />,
-         'Certificates': <LibraryBooksRoundedIcon />
+         'Certificates': <LibraryBooksRoundedIcon />,
+         'Skils': <CodeIcon />
+
       }
       return images[name]
   }
@@ -161,6 +163,8 @@ export default function PersistentDrawerLeft({
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
+            height:740,
+            maxHeight:980,
             boxSizing: 'border-box',
             backgroundColor:"#ADD8E6"
           },
@@ -173,8 +177,9 @@ export default function PersistentDrawerLeft({
             <div className="propic">
                  <Avatar
                  sx={{
-                    height: 153,
-                    width: 150,
+                   marginTop:'30px',
+                    height: 155,
+                    width: 155,
                     }} 
                    alt="Sai Kumar GUrugubelli"
                     src={proPic}
@@ -192,6 +197,10 @@ export default function PersistentDrawerLeft({
               <Link
             style={{ textDecoration: 'none', color: 'black', display: 'flex', justifyContent:"center" }}
             to={`/resume/${text.route}`}
+            onClick={()=>{
+              setOpen(false)
+              ontoggle(10)
+            }}
             key={text.title}
             >
               <ListItemIcon>

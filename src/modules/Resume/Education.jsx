@@ -1,5 +1,5 @@
-import { Avatar, Divider, Typography } from '@mui/material'
-import { Box, width } from '@mui/system'
+import { Avatar, Divider, Link, Typography } from '@mui/material'
+import { Box } from '@mui/system'
 import React from 'react'
 import "./Resume.css"
 import cec from '../../assets/images/cec.jpg'
@@ -26,7 +26,7 @@ function Education() {
             'score': '7.2',
             'webside': 'https://srichaitanya.net/',
             'img': scjc,
-            'address': 'Marikavalasa Rd,Madhurawada,Vizag,530048'
+            'address': 'Marikavalasa Rd,Madhurawada,Vizag, 530048'
         },
         {
             'title': ' Chaitanya Residential college',
@@ -36,7 +36,7 @@ function Education() {
             'score': '6.6',
             'img': cec,
             'webside': 'https://www.cec.ac.in/',
-            'address': 'Kommadi, Madhurawada, Visakhapatnam,530048'
+            'address': 'Kommadi, Madhurawada, Visakhapatnam, 530048'
         }
 
     ]
@@ -47,41 +47,93 @@ function Education() {
             <Box>
                 {
                     education.map(edu =>
+                        <>
                         <Box sx={{
                             display: 'flex',
                             justifyContent: 'flex-start',
-                            marginY: '60px'
+                            marginY: '10px'
                         }} >
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'flex-start',
+                                    marginY: '10px',
+                                    width: '70%'
+                                }}
+                            >
+                                <Typography >
+                                    <strong>
+                                        College Name
+                                    </strong>
+                                {/* </Typography>
+                                <Typography > */}
+                                    {': '+edu.title}
+                                </Typography>
+                                <Typography >
+                                    <strong>
+                                        Year of passing
+                                    </strong>
+                                {/* </Typography>
+                                <Typography > */}
+                                    {': '+edu.batch}
+                                </Typography>
+                                <Typography >
+                                    <strong>
+                                        Degree/course
+                                    </strong>
+                                {/* </Typography>
+                                <Typography > */}
+                                    {': '+edu.degree}
+                                </Typography>
+                                <Typography >
+                                    <strong>
+                                        Score
+                                    </strong>
+                                {/* </Typography>
+                                <Typography > */}
+                                    {': '+edu.score}
+                                </Typography>
+                                <Typography >
+                                    <strong>
+                                        Address
+                                    </strong>
+                                {/* </Typography>
+                                <Typography > */}
+                                    {': '+edu.address}
+                                </Typography>
+                                <Typography >
+                                    <strong>
+                                        Website
+                                    </strong>
+                                {/* </Typography>
+                                <Typography > */}
+                                    <Link  
+                                        href={edu.webside}
+                                        underline='hover'
+                                        target="_blank"
+                                        rel="noopener"
+                                    >: click here to visit {edu.title} </Link> 
+                                </Typography>
+                                {/* </Box>
                             <Box
                             sx={{
                                 display: 'flex',
                                 flexDirection:'column',
                                 justifyContent: 'flex-start',
                                 marginY: '60px',
-                                width:'70%'
+                                width:'50%'
                             }} 
-                            >
-                                <Typography >
-                                    {edu.title}
-                                </Typography>
-                                <Typography >
-                                    {edu.batch}
-                                </Typography>
-                                <Typography >
-                                    {edu.degree}
-                                </Typography>
-                                <Typography >
-                                    {edu.score}
-                                </Typography>
-                                <Typography >
-                                    {edu.address}
-                                </Typography>
+                            > */}
                             </Box>
-                            <Divider orientation="vertical" flexItem />
+                            {/* <Divider orientation="vertical" flexItem /> */}
                             <Box
-                            sx={{
-                                width:'30%'
-                            }} 
+                                sx={{
+                                    width: '30%',
+                                    display: 'flex',
+                                    justifyContent:'center',
+                                    alignItems:'center'
+                                }}
                             >
                                 <Avatar
                                     sx={{
@@ -94,6 +146,8 @@ function Education() {
 
                             </Box>
                         </Box>
+                            <Divider orientation="horizontal" flexItem/>
+                        </>
                     )
                 }
             </Box>
