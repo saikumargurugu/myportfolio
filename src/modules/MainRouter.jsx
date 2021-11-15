@@ -9,6 +9,7 @@ import AboutMe from './Resume/AboutMe';
 import Education from './Resume/Education';
 import Tools from './Resume/Tools';
 import Skills from './Resume/Skills';
+import WorkHistory from './Resume/Workhistory';
   
 function MainRouter() {
     const [contentWidth, setContentWidth] = useState(0)
@@ -45,6 +46,7 @@ function MainRouter() {
                 <Route path="/resume/edu" element={<Education />} />
                 <Route path="/resume/tools" element={<Tools />} />
                 <Route path="/resume/skils" element={<Skills />} />
+                <Route path="resume/work" element={<WorkHistory />} />
             </Routes>
             </Main>
         </div>
