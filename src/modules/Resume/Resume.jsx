@@ -13,6 +13,7 @@ import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import WorkRoundedIcon from '@mui/icons-material/WorkRounded';
 import IconButton from '@mui/material/IconButton';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 import CodeIcon from '@mui/icons-material/Code';
 import Divider from '@mui/material/Divider';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -69,7 +70,7 @@ export default function PersistentDrawerLeft({
     const ref =useRef(null);
     
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     useEffect(() => {
         /**
@@ -130,7 +131,8 @@ export default function PersistentDrawerLeft({
         'Tools Worked': <GitHubIcon />,
          'Work History': <WorkRoundedIcon />,
          'Certificates': <LibraryBooksRoundedIcon />,
-         'Skils': <CodeIcon />
+         'Skils': <CodeIcon />,
+         'Contact': <ContactMailIcon />,
 
       }
       return images[name]
@@ -214,16 +216,26 @@ export default function PersistentDrawerLeft({
           ))}
         </List>
         <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        <List>
+          {['Contact'].map((text, index) => (
+            <Link
+            style={{ textDecoration: 'none', color: 'black', display: 'flex', justifyContent:"center" }}
+            to={`/resume/${text}`}
+            onClick={()=>{
+              setOpen(false)
+              ontoggle(10)
+            }}
+            key={text}
+            >
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {renderImage(text)}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
+            </Link>
           ))}
-        </List> */}
+        </List>
       </Drawer>
     </Box>
   );

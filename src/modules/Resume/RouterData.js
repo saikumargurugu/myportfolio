@@ -219,3 +219,17 @@ export const workHistory={
         ]
     }   
 }
+
+
+export const contactData=[
+    {
+        'name':'Phone',
+        'type': 'Number',
+        'content':7013166331,
+    },
+    {
+        'name':'Email',
+        'type': 'Text',
+        'content':'saikumargurugubelli1234@gmail.com',
+    },
+]

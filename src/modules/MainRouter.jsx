@@ -10,9 +10,10 @@ import Education from './Resume/Education';
 import Tools from './Resume/Tools';
 import Skills from './Resume/Skills';
 import WorkHistory from './Resume/Workhistory';
+import Contact from './Resume/Contact';
   
 function MainRouter() {
-    const [contentWidth, setContentWidth] = useState(0)
+    const [contentWidth, setContentWidth] = useState(240)
     const ontoggle=(val)=> setContentWidth(val)
     const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         ({ theme, open }) => ({
@@ -47,6 +48,7 @@ function MainRouter() {
                 <Route path="/resume/tools" element={<Tools />} />
                 <Route path="/resume/skils" element={<Skills />} />
                 <Route path="resume/work" element={<WorkHistory />} />
+                <Route path="resume/Contact" element={<Contact />} />
             </Routes>
             </Main>
         </div>
