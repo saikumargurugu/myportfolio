@@ -43,6 +43,7 @@ function MainRouter() {
             <Resume ontoggle={ontoggle} />
             <Main>
             <Routes>
+            <   Route path="/" element={<AboutMe />} />
                 <Route path="/resume/aboutme" element={<AboutMe />} />
                 <Route path="/resume/edu" element={<Education />} />
                 <Route path="/resume/tools" element={<Tools />} />
