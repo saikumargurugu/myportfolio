@@ -44,12 +44,12 @@ function MainRouter() {
             <Main>
             <Routes>
             <   Route path="/" element={<AboutMe />} />
-                <Route path="/resume/aboutme" element={<AboutMe />} />
-                <Route path="/resume/edu" element={<Education />} />
-                <Route path="/resume/tools" element={<Tools />} />
-                <Route path="/resume/skils" element={<Skills />} />
-                <Route path="resume/work" element={<WorkHistory />} />
-                <Route path="resume/Contact" element={<Contact />} />
+                <Route path="/aboutme" element={<AboutMe />} />
+                <Route path="/edu" element={<Education />} />
+                <Route path="/tools" element={<Tools />} />
+                <Route path="/skils" element={<Skills />} />
+                <Route path="/work" element={<WorkHistory />} />
+                <Route path="/Contact" element={<Contact />} />
             </Routes>
             </Main>
         </div>

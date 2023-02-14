@@ -1,10 +1,17 @@
 import React from 'react'
 import Divider from '@mui/material/Divider';
 import { Typography } from '@mui/material';
+import me_about from '../../assets/me/me_2019.jpg'
+
+
 
 function AboutMe() {
+    console.log(me_about);
     return (
         <div>
+            <div>
+            <img src={me_about} alt='_' className='' />
+            </div>
               <Typography
               style={{
                 fontFamily: "-apple-system"

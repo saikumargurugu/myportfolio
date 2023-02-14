@@ -198,7 +198,7 @@ export default function PersistentDrawerLeft({
             <ListItem button key={text.title}>
               <Link
             style={{ textDecoration: 'none', color: 'black', display: 'flex', justifyContent:"center" }}
-            to={`/resume/${text.route}`}
+            to={`/${text.route}`}
             onClick={()=>{
               setOpen(false)
               ontoggle(10)
