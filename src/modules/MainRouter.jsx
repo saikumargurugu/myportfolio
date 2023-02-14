@@ -26,7 +26,7 @@ function MainRouter() {
         marginLeft: `${contentWidth}px`,
         marginTop:'38px',
         overflowY:'auto',
-        // height: '895px',
+        // height: '895px', 
         ...(open && {
             transition: theme.transitions.create('margin', {
                 easing: theme.transitions.easing.easeOut,
